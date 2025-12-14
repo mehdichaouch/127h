@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronomètre - Lac d'Annecy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1624714723860-f8d394c2f59e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .signature-font {
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative">
+    <!-- Film d'opacité -->
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    
+    <!-- Compteur en ligne -->
+    <div x-data="countdown()" class="relative z-10 text-center px-6">
+        <div class="signature-font text-white text-3xl md:text-5xl drop-shadow-2xl leading-relaxed">
+            <span>Cela fait </span>
+            <span x-text="days" class="text-4xl md:text-6xl font-bold"></span>
+            <span class="text-2xl md:text-4xl">j</span>
+            <span> </span>
+            <span x-text="hours" class="text-4xl md:text-6xl font-bold"></span>
+            <span class="text-2xl md:text-4xl">h</span>
+            <span> </span>
+            <span x-text="minutes" class="text-4xl md:text-6xl font-bold"></span>
+            <span class="text-2xl md:text-4xl">m</span>
+            <span> </span>
+            <span x-text="seconds" class="text-4xl md:text-6xl font-bold"></span>
+            <span class="text-2xl md:text-4xl">s</span>
+        </div>
+    </div>
+
+    <script>
+        function countdown() {
+            return {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                
+                init() {
+                    this.updateCountdown();
+                    setInterval(() => {
+                        this.updateCountdown();
+                    }, 1000);
+                },
+                
+                updateCountdown() {
+                    const startDate = new Date('2025-11-29T17:00:00');
+                    const now = new Date();
+                    const difference = now - startDate;
+                    
+                    if (difference > 0) {
+                        this.days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                        this.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        this.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                        this.seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                    } else {
+                        this.days = 0;
+                        this.hours = 0;
+                        this.minutes = 0;
+                        this.seconds = 0;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
