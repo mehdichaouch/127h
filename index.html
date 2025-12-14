@@ -29,27 +29,15 @@
     <div x-data="countdown()" class="relative z-10 text-center px-6">
         <div class="signature-font text-white text-3xl md:text-5xl drop-shadow-2xl leading-relaxed">
             <span>Cela fait </span>
-            <span x-text="days" class="text-4xl md:text-6xl font-bold"></span>
-            <span class="text-2xl md:text-4xl">j</span>
-            <span> </span>
-            <span x-text="hours" class="text-4xl md:text-6xl font-bold"></span>
+            <span x-text="totalHours" class="text-4xl md:text-6xl font-bold"></span>
             <span class="text-2xl md:text-4xl">h</span>
-            <span> </span>
-            <span x-text="minutes" class="text-4xl md:text-6xl font-bold"></span>
-            <span class="text-2xl md:text-4xl">m</span>
-            <span> </span>
-            <span x-text="seconds" class="text-4xl md:text-6xl font-bold"></span>
-            <span class="text-2xl md:text-4xl">s</span>
         </div>
     </div>
 
     <script>
         function countdown() {
             return {
-                days: 0,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
+                totalHours: 0,
                 
                 init() {
                     this.updateCountdown();
@@ -64,15 +52,10 @@
                     const difference = now - startDate;
                     
                     if (difference > 0) {
-                        this.days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                        this.hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        this.minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                        this.seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                        // Calculer le nombre total d'heures
+                        this.totalHours = Math.floor(difference / (1000 * 60 * 60)); // Conversion en heures
                     } else {
-                        this.days = 0;
-                        this.hours = 0;
-                        this.minutes = 0;
-                        this.seconds = 0;
+                        this.totalHours = 0;
                     }
                 }
             }
