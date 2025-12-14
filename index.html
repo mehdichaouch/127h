@@ -6,6 +6,7 @@
     <title>✨ Life ✨</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> <!-- Script pour confettis -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -35,6 +36,24 @@
     </div>
 
     <script>
+        // Animation des confettis à l'ouverture de la page
+        window.onload = function() {
+            confetti({
+                particleCount: 150,
+                angle: 60,
+                spread: 70,
+                origin: { x: 0 },
+                colors: ['#000000', '#FFD700'], // Noir et doré
+            });
+            confetti({
+                particleCount: 150,
+                angle: 120,
+                spread: 70,
+                origin: { x: 1 },
+                colors: ['#000000', '#FFD700'], // Noir et doré
+            });
+        };
+
         function countdown() {
             return {
                 totalHours: 0,
